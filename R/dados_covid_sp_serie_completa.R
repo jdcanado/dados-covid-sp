@@ -22,8 +22,8 @@ df <- bind_rows(df1, df2) %>%
     casos_novos = replace(casos_novos, datahora == min(datahora), 0),
     obitos_novos = replace(obitos_novos, datahora == min(datahora), 0),
     casos_novos = replace(casos_novos, datahora == min(datahora) & nome_munic == 'Sao Paulo', 1),
-    casos_mm7d = rollapply(casos_novos, 7, mean, align = 'right', fill = NA),
-    obitos_mm7d = rollapply(obitos_novos, 7, mean, align = 'right', fill = NA)
+    casos_mm7d = rollapply(casos_novos, 7, mean, align = 'left', fill = NA),
+    obitos_mm7d = rollapply(obitos_novos, 7, mean, align = 'left', fill = NA)
   ) %>% 
   ungroup %>% 
   mutate(
@@ -46,7 +46,7 @@ df <- bind_rows(df1, df2) %>%
          map_leg, map_leg_s, latitude, longitude)
 
 df %>% 
-  write_csv2('data/dados_covid_sp.csv')
+  write_csv2('data/dados_covid_sp_jdc.csv')
 
 df %>% 
   write.csv2('data/dados_covid_sp_latin2.csv', row.names = F, fileEncoding = 'Latin2')
