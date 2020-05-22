@@ -46,7 +46,7 @@ df <- bind_rows(df1, df2) %>%
          map_leg, map_leg_s, latitude, longitude)
 
 df %>% 
-  write_csv2('data/dados_covid_sp_jdc_teste.csv')
+  write_csv2('data/dados_covid_sp_jdc.csv')
 
 df %>% 
   write.csv2('data/dados_covid_sp_latin2.csv', row.names = F, fileEncoding = 'Latin2')
